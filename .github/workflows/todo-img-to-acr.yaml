@@ -19,7 +19,7 @@ jobs:
           - name: add-todo-app
             path: ./Add-Task
           - name: delete-todo-app
-            path: ./Delete-Task
+            path: ./Delete-task
           - name: get-todo-app
             path: ./Get-Task
 
