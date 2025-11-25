@@ -1,0 +1,40 @@
+name: todo-img-to-acr
+on: workflow_dispatch
+
+permissions:
+  id-token: write
+  contents: read
+env:
+  ACR_NAME: todomicroservicesacr1234
+  Image_tag: latest
+  
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - name: todo-ui-app
+            path: ./Micro-todo-ui
+          - name: add-todo-app
+            path: ./Add-Task
+          - name: delete-todo-app
+            path: ./Delete-Task
+          - name: get-todo-app
+            path: ./Get-Task
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5.0.0
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Build and push ${{ matrix.service.name }} image
+        working-directory: ${{ matrix.service.path }}
+        run: |
+          az acr login --name $ACR_NAME
+          docker build -t $ACR_NAME.azurecr.io/${{ matrix.service.name }}:$Image_tag .
+          docker push $ACR_NAME.azurecr.io/${{ matrix.service.name }}:$Image_tag
