@@ -15,7 +15,7 @@ todoui:
     name: todo-ui-app
     tag: latest
   port: 80
-  servicePort: 80
+  ServicePort: 80
   ingress:
     host: ui.puneetdevops.online
 
@@ -25,7 +25,7 @@ Addtask :
     name: add-todo-app
     tag: latest
   port: 80
-  servicePort: 8000
+  ServicePort: 8000
   ingress:
     host: addtask.puneetdevops.online
         
@@ -35,7 +35,7 @@ Deletetask :
     name: delete-todo-app
     tag: latest
   port: 80
-  servicePort: 8000
+  ServicePort: 8000
   ingress:
     host: deletetask.puneetdevops.online
 Gettask :
@@ -44,6 +44,6 @@ Gettask :
     name: get-todo-app
     tag: latest
   port: 80
-  servicePort: 8000
+  ServicePort: 8000
   ingress:
     host: gettask.puneetdevops.online
