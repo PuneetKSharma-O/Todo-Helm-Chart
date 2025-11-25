@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Release.Name}}-todo-delete-task
+spec:
+  replicas: {{.Values.Deletetask.replicaCount}}
+  selector:
+    matchLabels:
+      app: {{.Release.Name}}-todo-delete-task
+  template:
+    metadata:
+      labels:
+        app: {{.Release.Name}}-todo-delete-task
+    spec:
+      containers:
+      - name: {{.Release.Name}}-todo-delete-task
+        image: {{.Values.common.containerRegistry}}/{{.Values.Deletetask.image.name}}:{{.Values.Deletetask.image.tag}}
+        ports:
+        - containerPort: {{.Values.Deletetask.ServicePort}}
+
+        env:
+        - name: {{.Values.common.env.name}}
+          value: {{.Values.common.env.value}}
+
+  strategy:
+    type: {{.Values.common.strategy.type}}
