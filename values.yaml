@@ -19,7 +19,7 @@ todoui:
   ingress:
     host: ui.puneetdevops.online
 
-Addtask :
+Addtask:
   replicaCount: 3
   image:
     name: add-todo-app
@@ -29,7 +29,7 @@ Addtask :
   ingress:
     host: addtask.puneetdevops.online
         
-Deletetask :
+Deletetask:
   replicaCount: 3
   image:
     name: delete-todo-app
@@ -38,7 +38,7 @@ Deletetask :
   ServicePort: 8000
   ingress:
     host: deletetask.puneetdevops.online
-Gettask :
+Gettask:
   replicaCount: 3
   image:
     name: get-todo-app
